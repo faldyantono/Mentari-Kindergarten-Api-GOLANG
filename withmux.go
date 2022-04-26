@@ -60,7 +60,6 @@ func createNewStudent(w http.ResponseWriter, r *http.Request) {
 	reqBody, _ := ioutil.ReadAll(r.Body)
 	fmt.Fprintf(w, "%+v", string(reqBody))
 	var student Student
-	// UPDATE
 	json.Unmarshal(reqBody, &student)
 	// update students{1} array to include
 	Students = append(Students, student)
