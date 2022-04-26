@@ -21,7 +21,7 @@ func handleRequests() {
 	//Create and update student
 	r.HandleFunc("/student/{id}", createNewStudent).Methods("POST")
 	//delete student
-	r.HandleFunc("/student/{id}", deleteArticle).Methods("DELETE")
+	r.HandleFunc("/student/{id}", deleteStudent).Methods("DELETE")
 	log.Fatal(http.ListenAndServe(":10000", r))
 }
 
@@ -66,7 +66,7 @@ func createNewStudent(w http.ResponseWriter, r *http.Request) {
 }
 
 //DELETING STUDENT
-func deleteArticle(w http.ResponseWriter, r *http.Request) {
+func deleteStudent(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id := vars["id"]
 
