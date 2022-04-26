@@ -47,7 +47,7 @@ func returnSingleStudent(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func main() {
-	Students = []Student{Student{Id: "1", Name: "budi", Age: 5}}
+	Students = []Student{Student{Id: "1", Name: "budi kurniawan", Age: 5}}
 	fmt.Println("Mentari Kindergarten Database")
 	handleRequests()
 	//localhost:10000/home : MENTARI KINDERGARTEN HOMEPAGE
