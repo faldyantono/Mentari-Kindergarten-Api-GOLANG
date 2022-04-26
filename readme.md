@@ -1,0 +1,1 @@
+Terlampir dua kode golang untuk merancang API, dimana file yang pertama adalah withmux.go yang memiliki kode lebih lengkap dibandingkan file withoutframework.go, akan tetapi file tersebut menggunakan gorilla/mux router, sehingga saya serahkan kepada bapak/ibu ybs untuk menentukan mana yang lebih baik, terima kasih..
