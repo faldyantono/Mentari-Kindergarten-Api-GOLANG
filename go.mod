@@ -1,4 +1,4 @@
-module github.com/faldyantono/Mentari-Kindergarten-API-Go-Lang
+module github.com/faldyantono/Mentari-Kindergarten-Api-GOLANG
 
 go 1.17
 
