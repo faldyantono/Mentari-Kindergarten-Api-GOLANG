@@ -3,11 +3,14 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
 )
+
+//localhost:10000 bukan 8080
 
 func handleRequests() {
 	r := mux.NewRouter().StrictSlash(true)
@@ -16,6 +19,10 @@ func handleRequests() {
 	r.HandleFunc("/student", returnAllstudents)
 	//Get student By ID http://{host}:{port}/student/{id}
 	r.HandleFunc("/student/{id}", returnSingleStudent)
+	//Create and update student
+	r.HandleFunc("/student/{id}", createNewStudent).Methods("POST")
+	//delete student
+	r.HandleFunc("/student/{id}", deleteArticle).Methods("DELETE")
 	log.Fatal(http.ListenAndServe(":10000", r))
 }
 
@@ -46,6 +53,34 @@ func returnSingleStudent(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
+
+//CREATE (REGISTER) AND UPDATE STUDENT
+func createNewStudent(w http.ResponseWriter, r *http.Request) {
+	// CREATE
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	fmt.Fprintf(w, "%+v", string(reqBody))
+	var student Student
+	// UPDATE
+	json.Unmarshal(reqBody, &student)
+	// update students{1} array to include
+	Students = append(Students, student)
+	json.NewEncoder(w).Encode(student)
+}
+
+//DELETING STUDENT
+func deleteArticle(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id := vars["id"]
+
+	for index, student := range Students {
+		if student.Id == id {
+			// updates Students array to remove the student
+			Students = append(Students[:index], Students[index+1:]...)
+		}
+	}
+
+}
+
 func main() {
 	Students = []Student{Student{Id: "1", Name: "budi kurniawan", Age: 5}}
 	fmt.Println("Mentari Kindergarten Database")
