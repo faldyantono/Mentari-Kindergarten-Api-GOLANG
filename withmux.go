@@ -15,7 +15,6 @@ import (
 func handleRequests() {
 	r := mux.NewRouter().StrictSlash(true)
 	r.HandleFunc("/home", homePage)
-	//register POST student into the system http://{host}:{port}/student
 	r.HandleFunc("/student", returnAllstudents)
 	//Get student By ID http://{host}:{port}/student/{id}
 	r.HandleFunc("/student/{id}", returnSingleStudent)
